@@ -69,15 +69,27 @@ async function resizeImage() {
             originalImage.src = e.target.result;
 
             originalImage.onload = function () {
+                const aspectRatio = originalImage.width / originalImage.height;
+                const inputAspectRatio = width / height;
+
+                let newWidth, newHeight;
+                if (aspectRatio > inputAspectRatio) {
+                    newWidth = width;
+                    newHeight = width / aspectRatio;
+                } else {
+                    newHeight = height;
+                    newWidth = height * aspectRatio;
+                }
+
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
 
                 // Setting canvas size to desired dimensions
-                canvas.width = width;
-                canvas.height = height;
+                canvas.width = newWidth;
+                canvas.height = newHeight;
 
                 // Drawing the image into canvas
-                ctx.drawImage(originalImage, 0, 0, width, height);
+                ctx.drawImage(originalImage, 0, 0, newWidth, newHeight);
 
                 // Converting canvas to desired format
                 const format = document.getElementById('formatSelect').value;
@@ -128,7 +140,6 @@ function convertImage(file) {
     };
     reader.readAsArrayBuffer(file);
 }
-
 
 function toggleMenu() {
   var menu = document.querySelector('.menu');
