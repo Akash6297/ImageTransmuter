@@ -3,22 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Format Converter</title>
+    <title>ImageTransmuter</title>
     <meta name="description" content="Easily convert images to WEBP, PNG, and JPEG formats. Resize images before converting.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="LOGO.webp">
 </head>
 <body>
-<header id="navbar">
-    <nav>
-        <h1>Image Format Converter</h1>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#description">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-</header>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="LOGO.webp" alt="Logo" class="logo-img">
+    </div>
+    <div class="menu">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="burger" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </nav>
+  <header id="home">
+   
+    <div class="hero">
+      <h1 class="animated-text">Convert Your Image in just One click</h1>
+    </div>
+  </header>
+
+  <div class="popup-container">
+    <div class="popup">
+      <!-- <img src="BackgroundBlaster.png" alt="Your Photo" class="circle-photo"> -->
+      <img src="LOGO.webp" alt="About Image" class="about-image">
+      <h2>Welcome to ImageTransmuter</h2>
+      <p class="abc">This is a website where you can easily convert the image format in just one click.</p>
+      
+      <p class="abc">Follow Us !!</p>
+    <div class="social-handles">
+      <a class="abc" href="https://www.facebook.com/profile.php?id=100041998442913" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a class="abc" href="https://twitter.com/akashma36499324" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a class="abc" href="https://instagram.com/@photos_by_akash" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <button class="popup-close-btn" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <section>
 <div class="container">
     <h1>Image Format Converter</h1>
     <div id="drop-area">
@@ -31,6 +64,8 @@
         <option value="png">Convert to PNG</option>
         <option value="jpeg">Convert to JPEG</option>
     </select>
+
+    <br><br>
     <label for="widthInput">Width:</label>
     <input type="number" id="widthInput" placeholder="Enter width (px)" style="margin-bottom: 10px;">
 
@@ -49,28 +84,72 @@
         </div>
     </div>
     <button id="downloadBtn" style="display:none;">Download Image</button>
+  </section>
+    <!-- About -->
+    
 
-    <!-- Description Section -->
-    <section id="description">
-        <h2>Description</h2>
-        <p>Welcome to our Image Format Converter tool! Easily convert your images to different formats like WEBP, PNG, and JPEG. You can also resize images before converting, making it simple and convenient to optimize your images for various purposes.</p>
+    <section id="about" class="bg-white">
+      <div class="container">
+        <h2>About Us</h2>
+        <div class="about-content">
+          <img src="LOGO.webp" alt="About Image" class="about-image">
+          <div class="about-text">
+            <h3>Welcome to ImageTransmuter</h3>
+      
+            <p class="abc">In ImageTransmuter tool! Easily convert your images to different formats like WEBP, PNG, and JPEG. You can also resize images before converting, making it simple and convenient to optimize your images for various purposes.</p>
+            <p class="abc">The Website is created By - <strong>Akash Mandal</strong> </p>
+            <p class="abc">If you have any query please fill free you ask Your question using the contact from. We are happy to help you. </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <h2>Contact</h2>
-        <p>If you have any questions, feedback, or need assistance, please don't hesitate to contact us:</p>
-        <ul>
-            <li>Email: akashmandal6297@gmail.com</li>
-            <li>Phone: +91 6297321207</li>
-            <li>Address: 723143 Balarampur, Purulia, West bengal, INDIA</li>
-        </ul>
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form action="mailto:akashmandal6297@gmail.com" method="post" enctype="text/plain">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Submit</button>
+        </form>
+        </div>
     </section>
 </div>
 
 <canvas style="display:none;"></canvas>
-<footer>
-    <p>&copy; 2024 Image Format Converter. All rights reserved.</p>
+<br><br><br><br>
+<footer class="footer mt-auto py-3 bg-dark">
+  <div >
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/profile.php?id=100041998442913"><i class="fab fa-facebook"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://twitter.com/akashma36499324"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://instagram.com/@photos_by_akash"><i class="fab fa-instagram"></i></a>
+          </li>
+        </ul>
+        <p class="mb-0" >&copy; 2023 Akash Mandal. All rights reserved.</p>
+        <p class="mb-0">Thank you for visiting!</p>
+      </div>
+    </div>
+  </div>
 </footer>
 <script src="app.js"></script>
 </body>

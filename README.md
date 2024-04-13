@@ -1,4 +1,4 @@
-# Image Format Converter
+# ImageTransmuter
 
 This is a simple web application that allows users to convert images between different formats like WEBP, PNG, and JPEG. Users can also resize images before converting them.
 
