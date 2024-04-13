@@ -27,8 +27,8 @@
       <div class="bar"></div>
     </div>
   </nav>
+  
   <header id="home">
-   
     <div class="hero">
       <h1 class="animated-text">Convert Your Image in just One click</h1>
     </div>
@@ -36,121 +36,114 @@
 
   <div class="popup-container">
     <div class="popup">
-      <!-- <img src="BackgroundBlaster.png" alt="Your Photo" class="circle-photo"> -->
       <img src="LOGO.webp" alt="About Image" class="about-image">
       <h2>Welcome to ImageTransmuter</h2>
       <p class="abc">This is a website where you can easily convert the image format in just one click.</p>
-      
       <p class="abc">Follow Us !!</p>
-    <div class="social-handles">
-      <a class="abc" href="https://www.facebook.com/profile.php?id=100041998442913" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a class="abc" href="https://twitter.com/akashma36499324" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a class="abc" href="https://instagram.com/@photos_by_akash" target="_blank"><i class="fab fa-instagram"></i></a>
-    </div>
-    <button class="popup-close-btn" onclick="closePopup()">Close</button>
+      <div class="social-handles">
+        <a class="abc" href="https://www.facebook.com/profile.php?id=100041998442913" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a class="abc" href="https://twitter.com/akashma36499324" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a class="abc" href="https://instagram.com/@photos_by_akash" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+      <button class="popup-close-btn" onclick="closePopup()">Close</button>
     </div>
   </div>
 
-  <section>
-<div class="container">
-    <h1>Image Format Converter</h1>
-    <div id="drop-area">
-        <p>Drag and drop an image here, or click to select an image (PNG, JPEG, WEBP)</p>
-        <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp" hidden>
-        <button onclick="document.getElementById('imageInput').click()">Choose File</button>
+  <section class="main-section">
+    <div class="container">
+      <h1>Image Format Converter</h1>
+      <div id="drop-area">
+          <p>Drag and drop an image here, or click to select an image (PNG, JPEG, WEBP)</p>
+          <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp" hidden>
+          <button onclick="document.getElementById('imageInput').click()">Choose File</button>
+      </div>
+      <select id="formatSelect">
+          <option value="webp">Convert to WEBP</option>
+          <option value="png">Convert to PNG</option>
+          <option value="jpeg">Convert to JPEG</option>
+      </select>
+      <br><br>
+      <label for="widthInput">Width:</label>
+      <input type="number" id="widthInput" placeholder="Enter width (px)" style="margin-bottom: 10px;">
+      <label for="heightInput">Height:</label>
+      <input type="number" id="heightInput" placeholder="Enter height (px)" style="margin-bottom: 10px;">
+      <button onclick="resizeImage()">Resize and Convert</button>
+      <div id="preview" style="margin-top: 20px;">
+          <div>
+              <h4 id="uploadedHeading">Your Image</h4>
+              <div id="uploadedImage"></div>
+          </div>
+          <div>
+              <h4 id="convertedHeading">Converted Image</h4>
+              <div id="convertedImage"></div>
+          </div>
+      </div>
+      <button id="downloadBtn" style="display:none;">Download Image</button>
     </div>
-    <select id="formatSelect">
-        <option value="webp">Convert to WEBP</option>
-        <option value="png">Convert to PNG</option>
-        <option value="jpeg">Convert to JPEG</option>
-    </select>
-
-    <br><br>
-    <label for="widthInput">Width:</label>
-    <input type="number" id="widthInput" placeholder="Enter width (px)" style="margin-bottom: 10px;">
-
-    <label for="heightInput">Height:</label>
-    <input type="number" id="heightInput" placeholder="Enter height (px)" style="margin-bottom: 10px;">
-
-    <button onclick="resizeImage()">Resize and Convert</button>
-    <div id="preview" style="margin-top: 20px;">
-        <div>
-            <h4 id="uploadedHeading">Your Image</h4>
-            <div id="uploadedImage"></div>
-        </div>
-        <div>
-            <h4 id="convertedHeading">Converted Image</h4>
-            <div id="convertedImage"></div>
-        </div>
-    </div>
-    <button id="downloadBtn" style="display:none;">Download Image</button>
   </section>
-    <!-- About -->
-    
-
-    <section id="about" class="bg-white">
-      <div class="container">
-        <h2>About Us</h2>
-        <div class="about-content">
-          <img src="LOGO.webp" alt="About Image" class="about-image">
-          <div class="about-text">
-            <h3>Welcome to ImageTransmuter</h3>
-      
-            <p class="abc">In ImageTransmuter tool! Easily convert your images to different formats like WEBP, PNG, and JPEG. You can also resize images before converting, making it simple and convenient to optimize your images for various purposes.</p>
-            <p class="abc">The Website is created By - <strong>Akash Mandal</strong> </p>
-            <p class="abc">If you have any query please fill free you ask Your question using the contact from. We are happy to help you. </p>
-            </div>
-          </div>
+  
+  <!-- About Section -->
+  <section id="about" class="bg-white">
+    <div class="container">
+      <h2>About Us</h2>
+      <div class="about-content">
+        <img src="LOGO.webp" alt="About Image" class="about-image">
+        <div class="about-text">
+          <h3>Welcome to ImageTransmuter</h3>
+          <p class="abc">In ImageTransmuter tool! Easily convert your images to different formats like WEBP, PNG, and JPEG. You can also resize images before converting, making it simple and convenient to optimize your images for various purposes.</p>
+          <p class="abc">The Website is created By - <strong>Akash Mandal</strong></p>
+          <p class="abc">If you have any query please fill free you ask Your question using the contact from. We are happy to help you.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <form action="mailto:akashmandal6297@gmail.com" method="post" enctype="text/plain">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Submit</button>
-        </form>
-        </div>
-    </section>
-</div>
-
-<canvas style="display:none;"></canvas>
-<br><br><br><br>
-<footer class="footer mt-auto py-3 bg-dark">
-  <div >
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="https://www.facebook.com/profile.php?id=100041998442913"><i class="fab fa-facebook"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://twitter.com/akashma36499324"><i class="fab fa-twitter"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://instagram.com/@photos_by_akash"><i class="fab fa-instagram"></i></a>
-          </li>
-        </ul>
-        <p class="mb-0" >&copy; 2023 Akash Mandal. All rights reserved.</p>
-        <p class="mb-0">Thank you for visiting!</p>
       </div>
     </div>
-  </div>
-</footer>
-<script src="app.js"></script>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form action="mailto:akashmandal6297@gmail.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <canvas style="display:none;"></canvas>
+
+  <footer class="footer mt-auto py-3 bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/profile.php?id=100041998442913"><i class="fab fa-facebook"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/akashma36499324"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://instagram.com/@photos_by_akash"><i class="fab fa-instagram"></i></a>
+            </li>
+          </ul>
+          <p class="mb-0">&copy; 2023 Akash Mandal. All rights reserved.</p>
+          <p class="mb-0">Thank you for visiting!</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>

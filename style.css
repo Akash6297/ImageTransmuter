@@ -137,7 +137,7 @@ img {
 }
 
 .menu a {
-  margin-right: 10px;
+  padding: 10px;
   color: #333;
   text-decoration: none;
 }
@@ -177,8 +177,8 @@ img {
 /* Footer */
 /* Footer */
 .footer {
-  background-color: #333;
-  color: #fff;
+  background:cover;
+  color: #333;
   padding: 20px 0;
   position: end;
   bottom: 0;
@@ -186,7 +186,7 @@ img {
 }
 
 .footer a {
-  color: #fff;
+  color: #333;
   text-decoration: none;
   transition: color 0.3s ease;
 }
