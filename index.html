@@ -2,56 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Format Converter</title>
+    <meta name="description" content="Easily convert images to WEBP, PNG, and JPEG formats. Resize images before converting.">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="LOGO.webp">
 </head>
 <body>
-  <header id="navbar">
+<header id="navbar">
     <nav>
         <h1>Image Format Converter</h1>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#description">About</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 </header>
-    <div class="container">
-        <h1>Image Format Converter</h1>
-        <div id="drop-area">
-            <p>Drag and drop an image here, or click to select an image (PNG, JPEG, WEBP)</p>
-            <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp" hidden>
-            <button onclick="document.getElementById('imageInput').click()">Choose File</button>
-        </div>
-        <select id="formatSelect">
-            <option value="webp">Convert to WEBP</option>
-            <option value="png">Convert to PNG</option>
-            <option value="jpeg">Convert to JPEG</option>
-        </select>
-        <label for="widthInput">Width:</label>
-        <input type="number" id="widthInput" placeholder="Enter width (px)" style="margin-bottom: 10px;">
-
-        <label for="heightInput">Height:</label>
-        <input type="number" id="heightInput" placeholder="Enter height (px)" style="margin-bottom: 10px;">
-
-        <button onclick="resizeImage()">Resize and Convert</button>
-        <div id="preview" style="margin-top: 20px;">
-            <div>
-                <h2 id="uploadedHeading">Your Image</h2>
-                <div id="uploadedImage"></div>
-            </div>
-            <div>
-                <h2 id="convertedHeading">Converted Image</h2>
-                <div id="convertedImage"></div>
-            </div>
-        </div>
-        <button id="downloadBtn" style="display:none;">Download Image</button>
+<div class="container">
+    <h1>Image Format Converter</h1>
+    <div id="drop-area">
+        <p>Drag and drop an image here, or click to select an image (PNG, JPEG, WEBP)</p>
+        <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp" hidden>
+        <button onclick="document.getElementById('imageInput').click()">Choose File</button>
     </div>
-    
-    <canvas style="display:none;"></canvas>
-    <footer>
-      <p>&copy; 2024 Image Format Converter. All rights reserved.</p>
-  </footer>
-    <script src="app.js"></script>
+    <select id="formatSelect">
+        <option value="webp">Convert to WEBP</option>
+        <option value="png">Convert to PNG</option>
+        <option value="jpeg">Convert to JPEG</option>
+    </select>
+    <label for="widthInput">Width:</label>
+    <input type="number" id="widthInput" placeholder="Enter width (px)" style="margin-bottom: 10px;">
+
+    <label for="heightInput">Height:</label>
+    <input type="number" id="heightInput" placeholder="Enter height (px)" style="margin-bottom: 10px;">
+
+    <button onclick="resizeImage()">Resize and Convert</button>
+    <div id="preview" style="margin-top: 20px;">
+        <div>
+            <h2 id="uploadedHeading">Your Image</h2>
+            <div id="uploadedImage"></div>
+        </div>
+        <div>
+            <h2 id="convertedHeading">Converted Image</h2>
+            <div id="convertedImage"></div>
+        </div>
+    </div>
+    <button id="downloadBtn" style="display:none;">Download Image</button>
+
+    <!-- Description Section -->
+    <section id="description">
+        <h2>Description</h2>
+        <p>Welcome to our Image Format Converter tool! Easily convert your images to different formats like WEBP, PNG, and JPEG. You can also resize images before converting, making it simple and convenient to optimize your images for various purposes.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>If you have any questions, feedback, or need assistance, please don't hesitate to contact us:</p>
+        <ul>
+            <li>Email: akashmandal6297@gmail.com</li>
+            <li>Phone: +91 6297321207</li>
+            <li>Address: 723143 Balarampur, Purulia, West bengal, INDIA</li>
+        </ul>
+    </section>
+</div>
+
+<canvas style="display:none;"></canvas>
+<footer>
+    <p>&copy; 2024 Image Format Converter. All rights reserved.</p>
+</footer>
+<script src="app.js"></script>
 </body>
 </html>
