@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Image Format Converter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Image Format Converter</h1>
+    <div id="drop-area">
+      <p>Drag and drop an image here, or click to select an image (PNG, JPEG, WEBP)</p>
+      <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp" hidden>
+      <button onclick="document.getElementById('imageInput').click()">Choose File</button>
+    </div>
+    <select id="formatSelect">
+      <option value="webp">Convert to WEBP</option>
+      <option value="png">Convert to PNG</option>
+      <option value="jpeg">Convert to JPEG</option>
+    </select>
+    <button onclick="convertImage()">Convert and Show Preview</button>
+    <div id="preview" style="margin-top: 20px;">
+      <div id="uploadedImage">
+        <h2 id="uploadedHeading">Your Image</h2>
+      </div>
+      <div id="convertedImage">
+        <h2 id="convertedHeading">Converted Image</h2>
+      </div>
+    </div>
+    <button id="downloadBtn" style="display:none;">Download Image</button>
+    <canvas style="display:none;"></canvas>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
