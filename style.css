@@ -3,14 +3,14 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #e9ecef;
+  background-color: #f8f9fa;
 }
 
 .container {
   width: 90%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 30px auto;
-  background: white;
+  background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -34,7 +34,7 @@ h1 {
 }
 
 #drop-area:hover {
-  background-color: #f8f9fa;
+  background-color: #f0faff;
 }
 
 input[type="file"] {
@@ -74,30 +74,34 @@ select {
 /* Styling for image preview areas */
 #preview {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   margin-top: 20px;
+  justify-content: space-between;
 }
 
 #preview > div {
-  margin-top: 10px;
+  width: 100%;
+  max-width: 45%;
+  margin-top: 20px;
 }
 
 #uploadedImage, #convertedImage {
   border: 1px solid #dee2e6;
   padding: 10px;
   border-radius: 5px;
+  overflow: hidden;
 }
 
 img {
   width: 100%;
   height: auto;
-  margin-top: 10px;
   border-radius: 4px;
 }
 
 #uploadedHeading, #convertedHeading {
   text-align: center;
   color: #495057;
+  margin-bottom: 10px;
 }
 
 #downloadBtn {
@@ -105,14 +109,62 @@ img {
   margin-top: 20px;
 }
 
-@media (min-width: 768px) {
-  #preview {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
+/* Sticky navbar */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  #preview > div {
-    width: 49%;
-  }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+nav h1 {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: bottom;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
 }

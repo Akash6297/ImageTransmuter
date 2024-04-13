@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Image Format Converter</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Image Format Converter</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Image Format Converter</h1>
-    <div id="drop-area">
-      <p>Drag and drop an image here, or click to select an image (PNG, JPEG, WEBP)</p>
-      <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp" hidden>
-      <button onclick="document.getElementById('imageInput').click()">Choose File</button>
-    </div>
-    <select id="formatSelect">
-      <option value="webp">Convert to WEBP</option>
-      <option value="png">Convert to PNG</option>
-      <option value="jpeg">Convert to JPEG</option>
-    </select>
-    <button onclick="convertImage()">Convert and Show Preview</button>
-    <div id="preview" style="margin-top: 20px;">
-      <div>
-        <h2 id="uploadedHeading">Your Image</h2>
-        <div id="uploadedImage">
-        
+  <header id="navbar">
+    <nav>
+        <h1>Image Format Converter</h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="container">
+        <h1>Image Format Converter</h1>
+        <div id="drop-area">
+            <p>Drag and drop an image here, or click to select an image (PNG, JPEG, WEBP)</p>
+            <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp" hidden>
+            <button onclick="document.getElementById('imageInput').click()">Choose File</button>
         </div>
-      </div>
-      <div>
-        <h2 id="convertedHeading">Converted Image</h2>
-      <div id="convertedImage">
-        
-      </div>
+        <select id="formatSelect">
+            <option value="webp">Convert to WEBP</option>
+            <option value="png">Convert to PNG</option>
+            <option value="jpeg">Convert to JPEG</option>
+        </select>
+        <label for="widthInput">Width:</label>
+        <input type="number" id="widthInput" placeholder="Enter width (px)" style="margin-bottom: 10px;">
+
+        <label for="heightInput">Height:</label>
+        <input type="number" id="heightInput" placeholder="Enter height (px)" style="margin-bottom: 10px;">
+
+        <button onclick="resizeImage()">Resize and Convert</button>
+        <div id="preview" style="margin-top: 20px;">
+            <div>
+                <h2 id="uploadedHeading">Your Image</h2>
+                <div id="uploadedImage"></div>
+            </div>
+            <div>
+                <h2 id="convertedHeading">Converted Image</h2>
+                <div id="convertedImage"></div>
+            </div>
+        </div>
+        <button id="downloadBtn" style="display:none;">Download Image</button>
     </div>
-    </div>
-    <button id="downloadBtn" style="display:none;">Download Image</button>
+    
     <canvas style="display:none;"></canvas>
-  </div>
-  <script src="app.js"></script>
+    <footer>
+      <p>&copy; 2024 Image Format Converter. All rights reserved.</p>
+  </footer>
+    <script src="app.js"></script>
 </body>
 </html>

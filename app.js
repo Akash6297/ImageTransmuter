@@ -1,107 +1,130 @@
-let selectedFile;
-let selectedFileName;
-let uploadedFormat = '';
-let convertedFormat = '';
+document.getElementById('imageInput').addEventListener('change', handleFileSelect, false);
+document.getElementById('drop-area').addEventListener('dragover', handleDragOver, false);
+document.getElementById('drop-area').addEventListener('drop', handleFileDrop, false);
 
-document.getElementById('drop-area').addEventListener('click', function() {
-  document.getElementById('imageInput').click();
-});
-
-document.getElementById('drop-area').addEventListener('dragover', function(event) {
-  event.preventDefault();
-  event.target.style.color = 'black';
-  event.target.style.borderColor = 'black';
-});
-
-document.getElementById('drop-area').addEventListener('dragleave', function(event) {
-  event.target.style.color = '#ccc';
-  event.target.style.borderColor = '#ccc';
-});
-
-document.getElementById('drop-area').addEventListener('drop', function(event) {
-  event.preventDefault();
-  event.target.style.color = '#ccc';
-  event.target.style.borderColor = '#ccc';
-  const files = event.dataTransfer.files;
-  selectedFile = files[0];
-  selectedFileName = selectedFile.name; // Store the file name
-  uploadedFormat = getFileFormat(selectedFile);
-  showPreview(selectedFile);
-});
-
-document.getElementById('imageInput').addEventListener('change', function(event) {
-  const files = event.target.files;
-  selectedFile = files[0];
-  selectedFileName = selectedFile.name; // Store the file name
-  uploadedFormat = getFileFormat(selectedFile);
-  showPreview(selectedFile);
-});
-
-function getFileFormat(file) {
-  const fileNameParts = file.name.split('.');
-  return fileNameParts[fileNameParts.length - 1].toUpperCase();
+function handleDragOver(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    evt.dataTransfer.dropEffect = 'copy';
 }
 
-function showPreview(file) {
-  const reader = new FileReader();
-  reader.onload = function(event) {
-    const uploadedImage = document.getElementById('uploadedImage');
-    uploadedImage.innerHTML = ''; // Clear previous previews
-    const img = new Image();
-    img.src = event.target.result;
-    img.style.maxWidth = '100%';
-    img.style.height = 'auto';
-    uploadedImage.appendChild(img);
-    document.getElementById('uploadedHeading').innerText = `Your Image [${uploadedFormat}]`;
-  };
-  reader.readAsDataURL(file);
+function handleFileDrop(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    const files = evt.dataTransfer.files;
+    handleFiles(files);
 }
 
-function convertImage() {
-  if (selectedFile) {
-    const format = document.getElementById('formatSelect').value;
-    const mimeType = format === 'png' ? 'image/png' : format === 'jpeg' ? 'image/jpeg' : 'image/webp';
-    const fileExtension = format === 'jpeg' ? 'jpg' : format;
-    convertedFormat = format.toUpperCase();
-    
+function handleFileSelect(evt) {
+    const files = evt.target.files;
+    handleFiles(files);
+}
+
+function handleFiles(files) {
+    if (files.length === 0) return;
+    const file = files[0];
+    if (!file.type.startsWith('image/')) {
+        alert('Please select an image file.');
+        return;
+    }
+    previewFile(file);
+}
+
+function previewFile(file) {
     const reader = new FileReader();
-    reader.onload = function(event) {
-      const img = new Image();
-      img.onload = function() {
-        const canvas = document.querySelector('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        canvas.toBlob(function(blob) {
-          const url = URL.createObjectURL(blob);
-          const convertedImage = document.getElementById('convertedImage');
-          convertedImage.innerHTML = ''; // Clear previous previews
-          const convertedImg = new Image();
-          convertedImg.src = url;
-          convertedImg.style.maxWidth = '100%';
-          convertedImg.style.height = 'auto';
-          convertedImage.appendChild(convertedImg);
-          
-          const downloadBtn = document.getElementById('downloadBtn');
-          downloadBtn.style.display = 'block';
-          downloadBtn.textContent = `Download Image (${convertedFormat})`;
-          downloadBtn.onclick = function() {
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${selectedFileName}.${fileExtension}`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-          };
-          document.getElementById('convertedHeading').innerText = `Converted Image [${convertedFormat}]`;
-        }, mimeType);
-      };
-      img.src = event.target.result;
+    reader.onload = (function(theFile) {
+        return function(e) {
+            const uploadedImage = document.getElementById('uploadedImage');
+            uploadedImage.innerHTML = `<img src="${e.target.result}" alt="${escape(theFile.name)}" style="max-width: 100%;">`;
+            const uploadedHeading = document.getElementById('uploadedHeading');
+            uploadedHeading.innerText = `Your Image [${theFile.type.split('/')[1]}]`;
+            const uploadedSize = (theFile.size / 1024).toFixed(2); // Size in KB
+            uploadedHeading.innerHTML += ` (${uploadedSize} KB)`;
+        };
+    })(file);
+    reader.readAsDataURL(file);
+}
+
+async function resizeImage() {
+    const files = document.getElementById('imageInput').files;
+    if (!files.length) return alert('Please select an image.');
+
+    const widthInput = document.getElementById('widthInput').value;
+    const heightInput = document.getElementById('heightInput').value;
+
+    if (!widthInput && !heightInput) {
+        // No dimensions provided, proceed with conversion without resizing
+        convertImage(files[0]);
+    } else {
+        // Dimensions provided, perform resizing and conversion
+        const width = parseInt(widthInput, 10);
+        const height = parseInt(heightInput, 10);
+        if (isNaN(width) || isNaN(height)) return alert('Please enter valid dimensions.');
+
+        const file = files[0];
+        const originalImage = new Image();
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            originalImage.src = e.target.result;
+
+            originalImage.onload = function () {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                // Setting canvas size to desired dimensions
+                canvas.width = width;
+                canvas.height = height;
+
+                // Drawing the image into canvas
+                ctx.drawImage(originalImage, 0, 0, width, height);
+
+                // Converting canvas to desired format
+                const format = document.getElementById('formatSelect').value;
+                canvas.toBlob(function (blob) {
+                    const url = URL.createObjectURL(blob);
+                    showPreview(url, blob, format, file.name);
+                }, `image/${format}`);
+            };
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
+function showPreview(url, blob, format, originalName) {
+    const convertedImage = document.getElementById('convertedImage');
+    convertedImage.innerHTML = `<img src="${url}" alt="Converted Image" style="max-width: 100%;">`;
+
+    const downloadButton = document.getElementById('downloadBtn');
+    downloadButton.style.display = 'block';
+    downloadButton.onclick = function () {
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${originalName.split('.')[0]}_converted.${format}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     };
-    reader.readAsDataURL(selectedFile);
-  } else {
-    alert('Please select an image first.');
-  }
+
+    const heading = document.getElementById('convertedHeading');
+    heading.innerText = `Converted Image [${format}]`;
+
+    // Calculate and display image sizes
+    const uploadedSize = (blob.size / 1024).toFixed(2); // Size in KB
+    const convertedSize = (blob.size / 1024).toFixed(2); // Size in KB
+    const sizeInfo = document.createElement('div');
+    sizeInfo.innerHTML = `Uploaded Image Size: ${uploadedSize} KB<br>Converted Image Size: ${convertedSize} KB`;
+    convertedImage.appendChild(sizeInfo);
+}
+
+function convertImage(file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const format = document.getElementById('formatSelect').value;
+        const blob = new Blob([e.target.result], { type: `image/${format}` });
+        const url = URL.createObjectURL(blob);
+        showPreview(url, blob, format, file.name);
+    };
+    reader.readAsArrayBuffer(file);
 }
