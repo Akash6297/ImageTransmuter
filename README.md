@@ -39,3 +39,7 @@ Contributions are welcome! If you have any suggestions or improvements, feel fre
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+![Screenshot 1](1.jpg)
+![Screenshot 2](2.jpg)
+![Screenshot 3](3.jpg)
